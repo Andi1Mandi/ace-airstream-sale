@@ -21,6 +21,57 @@
       border-radius: 6px;
       font-weight: bold;
     }
+	
+	* { box-sizing: border-box; }
+    body { font-family: sans-serif; margin: 0; background: #f9f9f9; }
+
+    .carousel-container {
+      width: 90%;
+      max-width: 700px;
+      margin: 40px auto;
+      overflow: hidden;
+      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .carousel-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .carousel-buttons button {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .carousel-buttons button:hover {
+      background: rgba(0,0,0,0.7);
+    }
   </style>
 </head>
 <body>
@@ -29,7 +80,35 @@
   </header>
   <div class="container">
     <div class="images">
-      
+      <div class="carousel-container">
+  <div class="carousel-track" id="track">
+    <div class="carousel-slide"><img src="images/1.jpg" alt="Poza 1"></div>
+    <div class="carousel-slide"><img src="images/2.jpg" alt="Poza 2"></div>
+    <div class="carousel-slide"><img src="images/3.jpg" alt="Poza 3"></div>
+	<div class="carousel-slide"><img src="images/4.jpg" alt="Poza 1"></div>
+    <div class="carousel-slide"><img src="images/5.jpg" alt="Poza 2"></div>
+    <div class="carousel-slide"><img src="images/6.jpg" alt="Poza 3"></div>
+	<div class="carousel-slide"><img src="images/7.jpg" alt="Poza 1"></div>
+    <div class="carousel-slide"><img src="images/8.jpg" alt="Poza 2"></div>
+    <!-- Adaugă mai multe imagini dacă vrei -->
+  </div>
+
+  <div class="carousel-buttons">
+    <button onclick="moveSlide(-1)">&#10094;</button>
+    <button onclick="moveSlide(1)">&#10095;</button>
+  </div>
+</div>
+
+<script>
+  const track = document.getElementById('track');
+  let index = 0;
+
+  function moveSlide(direction) {
+    const slides = document.querySelectorAll('.carousel-slide');
+    index = (index + direction + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+</script>
     </div>
     <div class="details">
       <p><strong>Brand / Model:</strong> Ace Airstream</p>
